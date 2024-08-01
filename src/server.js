@@ -1,11 +1,13 @@
 const express = require("express");
+const migrationRUN = require("./database/sqlite/migrations")
 const appError =  require("./utils/appError");
 const app = express();
 const routes = require("./routes")
 
 
 app.use(express.json());
-app.use(routes)
+app.use(routes);
+migrationRUN();
 app.use((error, request, response, next) => {
   if(error instanceof appError) {
     return response.status(error.statuscode).json({
