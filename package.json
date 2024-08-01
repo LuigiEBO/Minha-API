@@ -1,0 +1,20 @@
+{
+  "name": "minha-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "migration": "knex migrete:latest"
+  },
+  "keywords": [],
+  "author": "Luigi Enrico Borges Oliveira",
+  "license": "ISC",
+  "description": "API de autoria de Luigi Oliveira",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
