@@ -12,7 +12,9 @@
   "license": "ISC",
   "description": "API de autoria de Luigi Oliveira",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
