@@ -48,7 +48,7 @@ class NotesController {
     if (tags) {
       const filterTags = tags.split(",").map((tag) => tag.trim())
 
-      notes = await knex("tags")
+      notes = await knex("notes")
         .select(["notes.id", "notes.name", "notes.user_id"])
         .where("notes.user_id", user_id)
         .whereLike("notes.name", `%${name}%`)
