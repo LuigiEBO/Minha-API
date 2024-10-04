@@ -54,6 +54,7 @@ class NotesController {
         .whereLike("notes.name", `%${name}%`)
         .whereIn("name", filterTags)
         .innerJoin("notes", "notes.id", "tags.note_id")
+        .groupBy("notes.id")
         .orderBy("notes.name")
     } else {
       notes = await knex("notes")
