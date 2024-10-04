@@ -45,23 +45,11 @@ class NotesController {
     const user_id = request.user.id
 
     let notes
-    if (tags) {
-      const filterTags = tags.split(",").map((tag) => tag.trim())
-
-      notes = await knex("notes")
-        .select(["notes.id", "notes.name", "notes.user_id"])
-        .where("notes.user_id", user_id)
-        .whereLike("notes.name", `%${name}%`)
-        .whereIn("name", filterTags)
-        .innerJoin("notes", "notes.id", "tags.note_id")
-        .groupBy("notes.id")
-        .orderBy("notes.name")
-    } else {
+    
       notes = await knex("notes")
         .where({ user_id })
         .whereLike("name", `%${name}%`)
         .orderBy("name")
-    }
 
     const userTags = await knex("tags").where({ user_id })
     const notesWithTags = notes.map((note) => {
@@ -77,9 +65,3 @@ class NotesController {
 }
 }
 module.exports = NotesController
-
-/*const user_id = request.user.id
-    const notes = await knex("notes").where({user_id}).orderBy("name")
-
-    return response.json(notes)
-  }*/
