@@ -9,20 +9,21 @@ class NotesController {
       rating,
       user_id,
     });
-    const tagsInsert = tags.map(name => {
-      return {
-        name,
-        note_id,
-        user_id,
-      }
-    });
+    
+    const tagsInsert = tags.map((name) => {
+        return {
+          name,
+          note_id,
+          user_id,
+        }
+      })
 
     await knex("tags").insert(tagsInsert)
     return response.json('Deu certo')
   }
 
   async show (request, response) {
-    const {id} = resquest.params
+   const { id } = request.params
 
     const note = await knex('notes').where({id}).first();
     const tags = await knex('tags').where({note_id: id}).orderBy("name");
